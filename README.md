@@ -7,7 +7,7 @@
 
 **Stop fake signups. One line of code.**
 
-Open-source email validation that catches disposable emails before they waste your time. 155,000+ domains. Zero dependencies.
+Open-source email validation that catches disposable emails before they waste your time. 161,000+ domains. Zero dependencies.
 
 ## Install
 
@@ -39,7 +39,7 @@ isDisposableBulk(['a@tempmail.com', 'b@gmail.com']);
 
 | Feature | isDisposable | mailchecker | disposable-email-domains |
 |---------|-------------|-------------|--------------------------|
-| Domains | 155,000+ | 55,000 | 5,000 |
+| Domains | 161,000+ | 55,000 | 5,000 |
 | Simple boolean API | Yes | Yes | No (just a list) |
 | Zero dependencies | Yes | No | N/A |
 | TypeScript | Yes | Partial | N/A |
@@ -157,7 +157,7 @@ The API client automatically falls back to offline detection if the API is unrea
 
 ## How It Works
 
-1. **Offline mode (default):** Checks against a bundled blocklist of 155,000+ known disposable email domains. Instant, synchronous, zero network calls.
+1. **Offline mode (default):** Checks against a bundled blocklist of 161,000+ known disposable email domains. Instant, synchronous, zero network calls.
 
 2. **API mode (optional):** Adds real-time DNS/MX record validation, domain age checks via RDAP, and a composite risk score from 0-100. Requires an API key from [isdisposable.com](https://isdisposable.com).
 
@@ -201,4 +201,4 @@ MIT
 
 Built by [Junaid Shaukat](https://github.com/junaiddshaukat). Dashboard and API at [isdisposable.com](https://isdisposable.com).
 
-Part of the [isDisposable](https://github.com/isdisposable) ecosystem.
+Part of the [isDisposable](https://github.com/isdisposable) ecosystem. feedback and contact here --> junaidshaukat546@gmail.com
