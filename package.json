@@ -1,6 +1,6 @@
 {
   "name": "@isdisposable/js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Detect disposable and temporary email addresses. Open source, zero dependencies, 160k+ domains.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

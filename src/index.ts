@@ -62,7 +62,7 @@ export function createIsDisposable(config: IsDisposableConfig) {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), timeout);
 
-      const res = await fetch(`${apiUrl}/v1/check`, {
+      const res = await fetch(`${apiUrl}/api/v1/check`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ export function createIsDisposable(config: IsDisposableConfig) {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), timeout);
 
-      const res = await fetch(`${apiUrl}/v1/check/bulk`, {
+      const res = await fetch(`${apiUrl}/api/v1/check/bulk`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
