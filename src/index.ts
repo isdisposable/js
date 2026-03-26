@@ -28,7 +28,7 @@ export { isDomainDisposable, extractDomain };
 export function createIsDisposable(config: IsDisposableConfig) {
   const {
     apiKey,
-    apiUrl = 'https://api.isdisposable.com',
+    apiUrl = 'https://isdisposable.com',
     timeout = 5000,
     cache = true,
     cacheTTL = 3600,

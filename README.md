@@ -184,7 +184,7 @@ Create an API client for enhanced detection.
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
 | `apiKey` | `string` | — | Your API key from isdisposable.com |
-| `apiUrl` | `string` | `https://api.isdisposable.com` | API base URL |
+| `apiUrl` | `string` | `https://isdisposable.com` | API base URL |
 | `timeout` | `number` | `5000` | Request timeout in ms |
 | `cache` | `boolean` | `true` | Enable response caching |
 | `cacheTTL` | `number` | `3600` | Cache TTL in seconds |
