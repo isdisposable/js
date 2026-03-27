@@ -75,7 +75,20 @@ export function createIsDisposable(config: IsDisposableConfig) {
       clearTimeout(timeoutId);
 
       if (!res.ok) {
-        // Fallback to offline check
+        // Auth errors should NOT silently fallback — tell the developer
+        if (res.status === 401) {
+          const body = await res.json().catch(() => ({}));
+          throw new Error(body.error || 'Invalid or missing API key. Get one at https://isdisposable.com/dashboard/api-keys');
+        }
+        if (res.status === 403) {
+          const body = await res.json().catch(() => ({}));
+          throw new Error(body.error || 'API key is not authorized for this action');
+        }
+        if (res.status === 429) {
+          const body = await res.json().catch(() => ({}));
+          throw new Error(body.error || 'Rate limit exceeded');
+        }
+        // Other server errors — fallback to offline
         return offlineFallback(normalized);
       }
 
@@ -90,7 +103,15 @@ export function createIsDisposable(config: IsDisposableConfig) {
       }
 
       return { ...result, cached: false };
-    } catch {
+    } catch (err) {
+      // Re-throw auth/rate-limit errors — don't hide them
+      if (err instanceof Error && (
+        err.message.includes('API key') ||
+        err.message.includes('Rate limit') ||
+        err.message.includes('not authorized')
+      )) {
+        throw err;
+      }
       // Network error — fallback to offline
       return offlineFallback(normalized);
     }
@@ -116,11 +137,30 @@ export function createIsDisposable(config: IsDisposableConfig) {
       clearTimeout(timeoutId);
 
       if (!res.ok) {
+        if (res.status === 401) {
+          const body = await res.json().catch(() => ({}));
+          throw new Error(body.error || 'Invalid or missing API key');
+        }
+        if (res.status === 403) {
+          const body = await res.json().catch(() => ({}));
+          throw new Error(body.error || 'API key is not authorized');
+        }
+        if (res.status === 429) {
+          const body = await res.json().catch(() => ({}));
+          throw new Error(body.error || 'Rate limit exceeded');
+        }
         return emails.map((email) => offlineFallback(email.trim().toLowerCase()));
       }
 
       return res.json();
-    } catch {
+    } catch (err) {
+      if (err instanceof Error && (
+        err.message.includes('API key') ||
+        err.message.includes('Rate limit') ||
+        err.message.includes('not authorized')
+      )) {
+        throw err;
+      }
       return emails.map((email) => offlineFallback(email.trim().toLowerCase()));
     }
   }
